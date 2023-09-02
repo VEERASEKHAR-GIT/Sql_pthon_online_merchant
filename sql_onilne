@@ -53,4 +53,15 @@ cursor.execute("""
         FOREIGN KEY (product_id) REFERENCES Product(product_id)
     )
 """)
+# Create Payment Table
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS Payment (
+        payment_id INTEGER PRIMARY KEY,
+        order_id INTEGER,
+        payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        payment_method TEXT,
+        amount REAL,
+        FOREIGN KEY (order_id) REFERENCES Order(order_id)
+    )
+""")
 
