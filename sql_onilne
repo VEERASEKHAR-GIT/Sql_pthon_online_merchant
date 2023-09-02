@@ -64,4 +64,17 @@ cursor.execute("""
         FOREIGN KEY (order_id) REFERENCES Order(order_id)
     )
 """)
+# Create Address Table
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS Address (
+        address_id INTEGER PRIMARY KEY,
+        customer_id INTEGER,
+        street_address TEXT,
+        city TEXT,
+        state TEXT,
+        postal_code TEXT,
+        country TEXT,
+        FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
+    )
+""")
 
