@@ -16,6 +16,9 @@ cursor.execute("INSERT INTO Customers (first_name, last_name, email, password) V
 # Sample data for Orders table
 cursor.execute("INSERT INTO Orders (customer_id, status, total_price) VALUES (?, ?, ?)", (1, "Processing", 999.99))
 cursor.execute("INSERT INTO Orders (customer_id, status, total_price) VALUES (?, ?, ?)", (2, "Shipped", 34.98))
+# Sample data for OrderItems table
+cursor.execute("INSERT INTO OrderItems (order_id, product_id, quantity, unit_price) VALUES (?, ?, ?, ?)", (1, 1, 1, 999.99))
+cursor.execute("INSERT INTO OrderItems (order_id, product_id, quantity, unit_price) VALUES (?, ?, ?, ?)", (2, 2, 2, 19.99))
 
 
 # Commit changes and close the connection
