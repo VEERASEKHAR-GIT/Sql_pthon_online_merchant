@@ -13,6 +13,9 @@ cursor.execute("INSERT INTO Products (name, description, price, stock_quantity, 
 # Sample data for Customers table
 cursor.execute("INSERT INTO Customers (first_name, last_name, email, password) VALUES (?, ?, ?, ?)", ("John", "Doe", "johndoe@example.com", "password123"))
 cursor.execute("INSERT INTO Customers (first_name, last_name, email, password) VALUES (?, ?, ?, ?)", ("Alice", "Smith", "alice.smith@example.com", "securepass"))
+# Sample data for Orders table
+cursor.execute("INSERT INTO Orders (customer_id, status, total_price) VALUES (?, ?, ?)", (1, "Processing", 999.99))
+cursor.execute("INSERT INTO Orders (customer_id, status, total_price) VALUES (?, ?, ?)", (2, "Shipped", 34.98))
 
 
 # Commit changes and close the connection
