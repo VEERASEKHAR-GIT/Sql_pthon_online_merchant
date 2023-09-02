@@ -1,3 +1,18 @@
+import sqlite3
+
+# Create a SQLite database or connect to an existing one
+conn = sqlite3.connect("merch_store.db")
+cursor = conn.cursor()
+
+# Create Category Table
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS Category (
+        category_id INTEGER PRIMARY KEY,
+        name TEXT,
+        description TEXT
+    )
+""")
+
 # Create Product Table
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS Product (
@@ -11,14 +26,7 @@ cursor.execute("""
         FOREIGN KEY (category_id) REFERENCES Category(category_id)
     )
 """)
-# Create Category Table
-cursor.execute("""
-    CREATE TABLE IF NOT EXISTS Category (
-        category_id INTEGER PRIMARY KEY,
-        name TEXT,
-        description TEXT
-    )
-""")
+
 # Create Customer Table
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS Customer (
@@ -30,6 +38,7 @@ cursor.execute("""
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
 """)
+
 # Create Order Table
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS Order (
@@ -41,6 +50,7 @@ cursor.execute("""
         FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
     )
 """)
+
 # Create OrderItem Table
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS OrderItem (
@@ -53,6 +63,7 @@ cursor.execute("""
         FOREIGN KEY (product_id) REFERENCES Product(product_id)
     )
 """)
+
 # Create Payment Table
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS Payment (
@@ -64,6 +75,7 @@ cursor.execute("""
         FOREIGN KEY (order_id) REFERENCES Order(order_id)
     )
 """)
+
 # Create Address Table
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS Address (
@@ -78,3 +90,6 @@ cursor.execute("""
     )
 """)
 
+# Commit changes and close the connection
+conn.commit()
+conn.close()
