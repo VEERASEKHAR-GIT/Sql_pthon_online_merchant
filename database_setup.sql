@@ -23,6 +23,9 @@ cursor.execute("INSERT INTO OrderItems (order_id, product_id, quantity, unit_pri
 # Sample data for Payments table
 cursor.execute("INSERT INTO Payments (order_id, payment_method, amount) VALUES (?, ?, ?)", (1, "Credit Card", 999.99))
 cursor.execute("INSERT INTO Payments (order_id, payment_method, amount) VALUES (?, ?, ?)", (2, "PayPal", 34.98))
+# Sample data for Addresses table
+cursor.execute("INSERT INTO Addresses (customer_id, street_address, city, state, postal_code, country) VALUES (?, ?, ?, ?, ?, ?)", (1, "123 Main St", "Anytown", "CA", "12345", "USA"))
+cursor.execute("INSERT INTO Addresses (customer_id, street_address, city, state, postal_code, country) VALUES (?, ?, ?, ?, ?, ?)", (2, "456 Elm St", "Somewhere", "NY", "54321", "USA"))
 
 # Commit changes and close the connection
 conn.commit()
