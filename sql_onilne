@@ -30,4 +30,15 @@ cursor.execute("""
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
 """)
+# Create Order Table
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS Order (
+        order_id INTEGER PRIMARY KEY,
+        customer_id INTEGER,
+        order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        status TEXT,
+        total_price REAL,
+        FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
+    )
+""")
 
