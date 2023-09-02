@@ -41,4 +41,16 @@ cursor.execute("""
         FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
     )
 """)
+# Create OrderItem Table
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS OrderItem (
+        order_item_id INTEGER PRIMARY KEY,
+        order_id INTEGER,
+        product_id INTEGER,
+        quantity INTEGER,
+        unit_price REAL,
+        FOREIGN KEY (order_id) REFERENCES Order(order_id),
+        FOREIGN KEY (product_id) REFERENCES Product(product_id)
+    )
+""")
 
