@@ -20,6 +20,9 @@ cursor.execute("INSERT INTO Orders (customer_id, status, total_price) VALUES (?,
 cursor.execute("INSERT INTO OrderItems (order_id, product_id, quantity, unit_price) VALUES (?, ?, ?, ?)", (1, 1, 1, 999.99))
 cursor.execute("INSERT INTO OrderItems (order_id, product_id, quantity, unit_price) VALUES (?, ?, ?, ?)", (2, 2, 2, 19.99))
 
+# Sample data for Payments table
+cursor.execute("INSERT INTO Payments (order_id, payment_method, amount) VALUES (?, ?, ?)", (1, "Credit Card", 999.99))
+cursor.execute("INSERT INTO Payments (order_id, payment_method, amount) VALUES (?, ?, ?)", (2, "PayPal", 34.98))
 
 # Commit changes and close the connection
 conn.commit()
