@@ -11,4 +11,12 @@ cursor.execute("""
         FOREIGN KEY (category_id) REFERENCES Category(category_id)
     )
 """)
+# Create Category Table
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS Category (
+        category_id INTEGER PRIMARY KEY,
+        name TEXT,
+        description TEXT
+    )
+""")
 
