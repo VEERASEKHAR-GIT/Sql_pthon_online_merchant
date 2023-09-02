@@ -2,9 +2,6 @@
 "Online Merch Store: Build an e-commerce platform with user-friendly interface, product management, secure payments, and admin dashboard."
 
 # Online Merchandise Store
-
-![Store Logo](store_logo.png) *(Optional)*
-
 An e-commerce application for selling merchandise online, offering a versatile platform for businesses to expand their reach and engage customers.
 
 ## Table of Contents
