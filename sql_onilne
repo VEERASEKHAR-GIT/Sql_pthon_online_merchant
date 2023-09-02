@@ -1,95 +1,96 @@
 import sqlite3
 
-# Create a SQLite database or connect to an existing one
+# Establish a connection to the SQLite database
 conn = sqlite3.connect("merch_store.db")
 cursor = conn.cursor()
 
-# Create Category Table
+# Create the Categories table
 cursor.execute("""
-    CREATE TABLE IF NOT EXISTS Category (
+    CREATE TABLE IF NOT EXISTS Categories (
         category_id INTEGER PRIMARY KEY,
-        name TEXT,
+        name TEXT NOT NULL,
         description TEXT
     )
 """)
 
-# Create Product Table
+# Create the Products table
 cursor.execute("""
-    CREATE TABLE IF NOT EXISTS Product (
+    CREATE TABLE IF NOT EXISTS Products (
         product_id INTEGER PRIMARY KEY,
-        name TEXT,
+        name TEXT NOT NULL,
         description TEXT,
-        price REAL,
-        stock_quantity INTEGER,
+        price REAL NOT NULL,
+        stock_quantity INTEGER NOT NULL,
         category_id INTEGER,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (category_id) REFERENCES Category(category_id)
+        FOREIGN KEY (category_id) REFERENCES Categories(category_id)
     )
 """)
 
-# Create Customer Table
+# Create the Customers table
 cursor.execute("""
-    CREATE TABLE IF NOT EXISTS Customer (
+    CREATE TABLE IF NOT EXISTS Customers (
         customer_id INTEGER PRIMARY KEY,
-        first_name TEXT,
-        last_name TEXT,
-        email TEXT,
-        password TEXT,
+        first_name TEXT NOT NULL,
+        last_name TEXT NOT NULL,
+        email TEXT NOT NULL UNIQUE,
+        password TEXT NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
 """)
 
-# Create Order Table
+# Create the Orders table
 cursor.execute("""
-    CREATE TABLE IF NOT EXISTS Order (
+    CREATE TABLE IF NOT EXISTS Orders (
         order_id INTEGER PRIMARY KEY,
-        customer_id INTEGER,
+        customer_id INTEGER NOT NULL,
         order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        status TEXT,
-        total_price REAL,
-        FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
+        status TEXT NOT NULL,
+        total_price REAL NOT NULL,
+        FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
     )
 """)
 
-# Create OrderItem Table
+# Create the OrderItems table
 cursor.execute("""
-    CREATE TABLE IF NOT EXISTS OrderItem (
+    CREATE TABLE IF NOT EXISTS OrderItems (
         order_item_id INTEGER PRIMARY KEY,
-        order_id INTEGER,
-        product_id INTEGER,
-        quantity INTEGER,
-        unit_price REAL,
-        FOREIGN KEY (order_id) REFERENCES Order(order_id),
-        FOREIGN KEY (product_id) REFERENCES Product(product_id)
+        order_id INTEGER NOT NULL,
+        product_id INTEGER NOT NULL,
+        quantity INTEGER NOT NULL,
+        unit_price REAL NOT NULL,
+        FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+        FOREIGN KEY (product_id) REFERENCES Products(product_id)
     )
 """)
 
-# Create Payment Table
+# Create the Payments table
 cursor.execute("""
-    CREATE TABLE IF NOT EXISTS Payment (
+    CREATE TABLE IF NOT EXISTS Payments (
         payment_id INTEGER PRIMARY KEY,
-        order_id INTEGER,
+        order_id INTEGER NOT NULL,
         payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        payment_method TEXT,
-        amount REAL,
-        FOREIGN KEY (order_id) REFERENCES Order(order_id)
+        payment_method TEXT NOT NULL,
+        amount REAL NOT NULL,
+        FOREIGN KEY (order_id) REFERENCES Orders(order_id)
     )
 """)
 
-# Create Address Table
+# Create the Addresses table
 cursor.execute("""
-    CREATE TABLE IF NOT EXISTS Address (
+    CREATE TABLE IF NOT EXISTS Addresses (
         address_id INTEGER PRIMARY KEY,
-        customer_id INTEGER,
-        street_address TEXT,
-        city TEXT,
-        state TEXT,
-        postal_code TEXT,
-        country TEXT,
-        FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
+        customer_id INTEGER NOT NULL,
+        street_address TEXT NOT NULL,
+        city TEXT NOT NULL,
+        state TEXT NOT NULL,
+        postal_code TEXT NOT NULL,
+        country TEXT NOT NULL,
+        FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
     )
 """)
 
-# Commit changes and close the connection
+# Save changes and close the connection
 conn.commit()
 conn.close()
+#veerasekhar
