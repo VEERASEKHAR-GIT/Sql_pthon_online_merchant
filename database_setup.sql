@@ -10,6 +10,9 @@ cursor.execute("INSERT INTO Categories (name, description) VALUES (?, ?)", ("Boo
 cursor.execute("INSERT INTO Products (name, description, price, stock_quantity, category_id) VALUES (?, ?, ?, ?, ?)", ("Laptop", "High-performance laptop", 999.99, 50, 1))
 cursor.execute("INSERT INTO Products (name, description, price, stock_quantity, category_id) VALUES (?, ?, ?, ?, ?)", ("T-Shirt", "Comfortable cotton t-shirt", 19.99, 100, 2))
 cursor.execute("INSERT INTO Products (name, description, price, stock_quantity, category_id) VALUES (?, ?, ?, ?, ?)", ("Sci-Fi Novel", "Bestselling science fiction book", 14.99, 75, 3))
+# Sample data for Customers table
+cursor.execute("INSERT INTO Customers (first_name, last_name, email, password) VALUES (?, ?, ?, ?)", ("John", "Doe", "johndoe@example.com", "password123"))
+cursor.execute("INSERT INTO Customers (first_name, last_name, email, password) VALUES (?, ?, ?, ?)", ("Alice", "Smith", "alice.smith@example.com", "securepass"))
 
 
 # Commit changes and close the connection
